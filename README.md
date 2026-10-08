@@ -37,7 +37,17 @@ To use Postgres (Neon/Supabase) instead of SQLite: set `DATABASE_URL` to the Pos
 
 ## Deployment URL
 
-TODO: add Vercel URL after deploy.
+TODO: add live URL after deploy.
+
+### Deploy on Render (recommended)
+
+1. Push this repo to GitHub (done: `ASAYMAN69/ditc`).
+2. Render Dashboard → New → Blueprint → select the repo (`render.yaml` wires a free web service + free Postgres).
+3. When prompted, paste `GEMINI_API_KEY` (and optionally `OPENROUTER_API_KEY`).
+4. After the first deploy, open a Render Shell on the web service and seed once: `node prisma/seed.mjs`.
+5. Put the live URL here and in the contest submission form.
+
+Notes: the repo stays on SQLite for local dev — the Blueprint flips the Prisma provider to Postgres at build time only. Free services sleep after 15 min idle (first visit takes ~1 min to wake); free Postgres expires 30 days after creation, which covers October judging. For Vercel instead: point `DATABASE_URL` at any Postgres (e.g. Neon) and set the same env vars.
 
 ## Demo credentials
 
