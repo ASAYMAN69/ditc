@@ -34,11 +34,12 @@ export default async function FestPage({ params }: { params: { festId: string } 
             <p className="mt-1 text-sm text-zinc-600">Check back soon — organizers add events here.</p>
           </div>
         )}
-        {fest.events.map((e) => {
+        {fest.events.map((e, ei) => {
           const s = seatInfo(e.registrations.length, e.capacity, e.registrationDeadline, e.status);
           return (
             <EventCard
               key={e.id}
+              index={ei}
               id={e.id}
               title={e.title}
               category={e.category}

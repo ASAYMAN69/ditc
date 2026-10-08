@@ -4,16 +4,46 @@
 
 :root {
   color-scheme: light;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-snappy: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #d4d4d8 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 8px;
+  border: 2px solid #fafafa;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0b8457;
 }
 
 body {
   @apply bg-zinc-50 text-zinc-900 antialiased;
-  font-family: system-ui, -apple-system, "Outfit", sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #0b8457;
+  color: #fff;
 }
 
 .font-display {
-  font-family: "Outfit", "Geist", system-ui, sans-serif;
-  letter-spacing: -0.02em;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  letter-spacing: -0.025em;
 }
 
 .card {
@@ -21,15 +51,39 @@ body {
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center rounded-xl bg-accent-600 px-5 py-2.5 font-semibold text-white transition active:scale-[0.98] hover:bg-accent-700 disabled:opacity-50;
+  @apply inline-flex select-none items-center justify-center rounded-full bg-accent-600 px-5 py-2.5 font-semibold text-white disabled:opacity-50;
+  transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+.btn-primary:hover {
+  @apply bg-accent-700 shadow-[0_10px_24px_-12px_rgba(11,132,87,0.7)];
+}
+.btn-primary:active {
+  transform: scale(0.97);
 }
 
 .btn-ghost {
-  @apply inline-flex items-center justify-center rounded-xl border border-zinc-300 px-4 py-2 font-medium transition active:scale-[0.98] hover:bg-zinc-100;
+  @apply inline-flex select-none items-center justify-center rounded-full border border-zinc-300 bg-white px-4 py-2 font-medium;
+  transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+.btn-ghost:hover {
+  @apply border-zinc-400 bg-zinc-100;
+}
+.btn-ghost:active {
+  transform: scale(0.97);
 }
 
 .input {
-  @apply w-full rounded-xl border border-zinc-300 bg-white px-3.5 py-2.5 outline-none focus:border-accent-600 focus:ring-2 focus:ring-accent-100;
+  @apply w-full rounded-xl border border-zinc-300 bg-white px-3.5 py-2.5 outline-none;
+  transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+}
+.input:focus {
+  @apply border-accent-600;
+  box-shadow: 0 0 0 3px rgba(14, 159, 110, 0.15);
+}
+
+:focus-visible {
+  outline: 2px solid #0b8457;
+  outline-offset: 2px;
 }
 
 .label {
@@ -38,4 +92,60 @@ body {
 
 .badge {
   @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: rise 0.55s var(--ease-out) both;
+  animation-delay: var(--rd, 0ms);
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.pop-in {
+  transform-origin: bottom right;
+  animation: pop-in 0.28s var(--ease-snappy) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .pop-in {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lift {
+    transition: transform 220ms var(--ease-out), border-color 200ms var(--ease-out), box-shadow 240ms var(--ease-out);
+  }
+  .lift:hover {
+    transform: translateY(-3px);
+  }
 }

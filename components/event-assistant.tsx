@@ -52,7 +52,7 @@ export function EventAssistant() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5 z-40 flex h-[420px] w-[min(92vw,360px)] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl">
+    <div className="pop-in fixed bottom-5 right-5 z-40 flex h-[420px] w-[min(90vw,360px)] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl">
       <div className="flex items-center justify-between bg-zinc-900 px-4 py-3 text-white">
         <p className="text-sm font-bold">Event assistant</p>
         <button onClick={() => setOpen(false)} className="text-sm text-zinc-300 hover:text-white" aria-label="Close assistant">✕</button>

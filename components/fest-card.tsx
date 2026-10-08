@@ -1,4 +1,5 @@
 import { ArrowRightIcon, CalendarIcon, GridIcon, PinIcon } from "@/components/icons";
+import type { CSSProperties } from "react";
 
 type Props = {
   id: string;
@@ -9,17 +10,19 @@ type Props = {
   eventsCount: number;
   openNow: number;
   banner: string;
+  index?: number;
 };
 
 export function FestCard(p: Props) {
   return (
     <a
       href={`/fests/${p.id}`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-[0_16px_32px_-20px_rgba(0,0,0,0.3)] active:translate-y-0"
+      style={{ "--rd": `${Math.min(p.index ?? 0, 8) * 60}ms` } as CSSProperties}
+      className="group lift reveal flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white hover:border-emerald-300 hover:shadow-[0_16px_32px_-20px_rgba(0,0,0,0.3)] active:translate-y-0"
     >
-      <div className="relative h-24 shrink-0">
+      <div className="relative h-24 shrink-0 overflow-hidden">
         {p.banner !== "" ? (
-          <img src={p.banner} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+          <img src={p.banner} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]" />
         ) : (
           <div className="absolute inset-0 bg-emerald-100">
             <GridIcon className="absolute -bottom-4 -right-2 h-24 w-24 text-emerald-700 opacity-25" />

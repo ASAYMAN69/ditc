@@ -44,10 +44,10 @@ export function SearchFilter() {
             key={c}
             type="button"
             onClick={() => push({ category: c })}
-            className={`badge cursor-pointer border px-3 py-1 capitalize ${
+            className={`badge cursor-pointer border px-3 py-1 capitalize transition active:scale-95 ${
               active === c
-                ? "border-accent-600 bg-accent-600 text-white"
-                : "border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-100"
+                ? "border-accent-600 bg-accent-600 text-white shadow-[0_6px_16px_-8px_rgba(11,132,87,0.8)]"
+                : "border-zinc-300 bg-white text-zinc-700 hover:border-zinc-400 hover:bg-zinc-100"
             }`}
           >
             {c}

@@ -63,7 +63,7 @@ export function RegForm({ eventId, closed, reason }: { eventId: string; closed: 
   }
 
   return (
-    <form onSubmit={submit} className="card flex flex-col gap-4 p-6">
+    <form onSubmit={submit} className="card reveal flex h-fit flex-col gap-4 p-6">
       <h2 className="font-display text-xl font-bold">Register for this event</h2>
       {signedIn && <p className="rounded-xl bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-800">Signed in — your details are filled in. Just hit submit.</p>}
       <div>

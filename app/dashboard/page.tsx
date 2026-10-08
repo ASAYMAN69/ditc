@@ -78,7 +78,7 @@ export default async function Dashboard() {
 function Kpi({ label, value }: { label: string; value: number }) {
   return (
     <div className="card p-6">
-      <p className="font-display text-4xl font-bold">{value}</p>
+      <p className="font-display text-4xl font-extrabold tabular-nums tracking-tight">{value}</p>
       <p className="mt-1 text-sm text-zinc-600">{label}</p>
     </div>
   );

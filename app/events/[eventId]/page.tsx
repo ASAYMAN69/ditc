@@ -45,12 +45,12 @@ export default async function EventPage({
             </span>
             <span className="badge bg-zinc-100 text-zinc-700">{e.fee === 0 ? "Free entry" : `BDT ${e.fee}`}</span>
           </div>
-          <h1 className="font-display mt-3 text-4xl font-bold tracking-tight">{e.title}</h1>
-          <dl className="mt-4 grid grid-cols-1 gap-2 text-sm md:grid-cols-2">
-            <div><dt className="font-semibold">Date & time</dt><dd className="text-zinc-600">{e.startAt.toString().slice(0, 21)} → {e.endAt.toString().slice(0, 21)}</dd></div>
-            <div><dt className="font-semibold">Venue</dt><dd className="text-zinc-600">{e.venue}</dd></div>
-            <div><dt className="font-semibold">Registration deadline</dt><dd className="text-zinc-600">{e.registrationDeadline.toString().slice(0, 21)} ({s.closesIn})</dd></div>
-            <div><dt className="font-semibold">Capacity</dt><dd className="text-zinc-600">{s.taken}/{e.capacity} taken · {s.seatsLeft} left</dd></div>
+          <h1 className="font-display mt-3 text-4xl font-extrabold tracking-tight">{e.title}</h1>
+          <dl className="mt-4 grid grid-cols-1 gap-x-6 gap-y-3 rounded-xl bg-zinc-50/80 p-4 text-sm md:grid-cols-2">
+            <div><dt className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">Date & time</dt><dd className="mt-0.5 font-medium text-zinc-700">{e.startAt.toString().slice(0, 21)} → {e.endAt.toString().slice(0, 21)}</dd></div>
+            <div><dt className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">Venue</dt><dd className="mt-0.5 font-medium text-zinc-700">{e.venue}</dd></div>
+            <div><dt className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">Registration deadline</dt><dd className="mt-0.5 font-medium text-zinc-700">{e.registrationDeadline.toString().slice(0, 21)} ({s.closesIn})</dd></div>
+            <div><dt className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">Capacity</dt><dd className="mt-0.5 font-medium tabular-nums text-zinc-700">{s.taken}/{e.capacity} taken · {s.seatsLeft} left</dd></div>
           </dl>
           <p className="mt-4 leading-relaxed text-zinc-700">{e.description}</p>
           </div>

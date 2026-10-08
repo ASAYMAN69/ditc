@@ -49,7 +49,7 @@ export default async function ParticipantsPage({
       <div className="card overflow-x-auto">
         <table className="w-full min-w-3xl text-left text-sm">
           <thead>
-            <tr className="border-b border-zinc-200 text-zinc-500">
+            <tr className="border-b border-zinc-200 text-[11px] font-bold uppercase tracking-wider text-zinc-500">
               <th className="px-4 py-3">Code</th>
               <th className="px-4 py-3">Name</th>
               <th className="px-4 py-3">Email</th>
@@ -61,8 +61,8 @@ export default async function ParticipantsPage({
           </thead>
           <tbody className="divide-y divide-zinc-100">
             {rows.map((r) => (
-              <tr key={r.id}>
-                <td className="px-4 py-2 font-mono text-xs">{r.code}</td>
+              <tr key={r.id} className="transition-colors hover:bg-zinc-50">
+                <td className="px-4 py-2.5 font-mono text-xs tabular-nums">{r.code}</td>
                 <td className="px-4 py-2 font-semibold">{r.fullName}</td>
                 <td className="px-4 py-2">{r.email}</td>
                 <td className="px-4 py-2">{r.phone}</td>

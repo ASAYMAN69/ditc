@@ -1,4 +1,5 @@
 import { seatInfo } from "@/lib/events";
+import type { CSSProperties } from "react";
 import { ArrowRightIcon, BoltIcon, BookIcon, BotIcon, CalendarIcon, ChatIcon, GamepadIcon, PinIcon, TicketIcon, TrophyIcon, UsersIcon } from "@/components/icons";
 
 export const CATEGORY_STYLE: Record<string, { chip: string; bar: string; Icon: (p: { className?: string }) => JSX.Element }> = {
@@ -28,6 +29,7 @@ type Props = {
   deadline: Date;
   status: string;
   image: string;
+  index?: number;
 };
 
 export function EventCard(p: Props) {
@@ -46,11 +48,12 @@ export function EventCard(p: Props) {
   return (
     <a
       href={`/events/${p.id}`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-[0_16px_32px_-20px_rgba(0,0,0,0.3)] active:translate-y-0"
+      style={{ "--rd": `${Math.min(p.index ?? 0, 8) * 60}ms` } as CSSProperties}
+      className="group lift reveal flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white hover:border-emerald-300 hover:shadow-[0_16px_32px_-20px_rgba(0,0,0,0.3)] active:translate-y-0"
     >
-      <div className="relative h-28 shrink-0">
+      <div className="relative h-28 shrink-0 overflow-hidden">
         {p.image !== "" ? (
-          <img src={p.image} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+          <img src={p.image} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]" />
         ) : (
           <div className={`absolute inset-0 ${st.chip}`}>
             <Icon className="absolute -bottom-4 -right-2 h-28 w-28 opacity-25" />

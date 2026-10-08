@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import { seatInfo } from "@/lib/events";
+import type { CSSProperties } from "react";
 import { EventAssistant } from "@/components/event-assistant";
 import { EventCard } from "@/components/event-card";
 import { FestCard } from "@/components/fest-card";
@@ -46,18 +47,18 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
   return (
     <div className="flex flex-col gap-8">
       <section className="grid gap-6 md:grid-cols-[2fr_1fr] md:items-end">
-        <div>
-          <p className="badge bg-accent-100 text-accent-700">Smart Club Operations</p>
-          <h1 className="font-display mt-3 text-4xl font-bold leading-none tracking-tight md:text-6xl">
+        <div className="reveal">
+          <p className="badge bg-emerald-950 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-50">Smart Club Operations</p>
+          <h1 className="font-display mt-3 text-4xl font-extrabold leading-[1.02] tracking-tight md:text-6xl">
             Fests & events, <span className="text-accent-600">one home.</span>
           </h1>
-          <p className="mt-3 max-w-[65ch] leading-relaxed text-zinc-600">
+          <p className="mt-3 max-w-[60ch] leading-relaxed text-zinc-600">
             Browse fests from the tech club, explore events inside each fest, and register directly. No third-party forms.
           </p>
         </div>
-        <div className="card p-5">
-          <p className="font-display text-3xl font-bold">{fests.length}</p>
-          <p className="text-sm text-zinc-600">live fests · {events.length} events open for discovery</p>
+        <div className="card reveal flex items-center gap-4 p-5" style={{ "--rd": "120ms" } as CSSProperties}>
+          <p className="font-display text-4xl font-extrabold tabular-nums tracking-tight">{fests.length}</p>
+          <p className="text-sm leading-snug text-zinc-600">live fests<br />{events.length} events to discover</p>
         </div>
       </section>
 
@@ -69,11 +70,12 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
           <Empty text="No fests published yet." />
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {fests.map((f) => {
+            {fests.map((f, fi) => {
               const openNow = f.events.filter((e) => seatInfo(e.registrations.length, e.capacity, e.registrationDeadline, e.status).isOpen).length;
               return (
                 <FestCard
                   key={f.id}
+                  index={fi}
                   id={f.id}
                   title={f.title}
                   venue={f.venue}
@@ -95,9 +97,10 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
           <Empty text="No events match. Clear search or filters." />
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {cards.map(({ e, s }) => (
+            {cards.map(({ e, s }, ei) => (
               <EventCard
                 key={e.id}
+                index={ei}
                 id={e.id}
                 title={e.title}
                 category={e.category}
