@@ -37,7 +37,7 @@ export default async function EventPage({
               <span className="badge absolute bottom-3 left-4 bg-black/55 capitalize text-white backdrop-blur-sm">{e.category}</span>
             </div>
           )}
-          <div className="p-8 pt-6">
+          <div className="p-5 pt-4 md:p-8 md:pt-6">
           <div className="flex flex-wrap items-center gap-2">
             <span className="badge bg-zinc-100 text-zinc-700 capitalize">{e.category}</span>
             <span className={`badge ${s.isOpen ? "bg-accent-100 text-accent-700" : "bg-zinc-200 text-zinc-600"}`}>
@@ -45,7 +45,7 @@ export default async function EventPage({
             </span>
             <span className="badge bg-zinc-100 text-zinc-700">{e.fee === 0 ? "Free entry" : `BDT ${e.fee}`}</span>
           </div>
-          <h1 className="font-display mt-3 text-4xl font-extrabold tracking-tight">{e.title}</h1>
+          <h1 className="font-display mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">{e.title}</h1>
           <dl className="mt-4 grid grid-cols-1 gap-x-6 gap-y-3 rounded-xl bg-zinc-50/80 p-4 text-sm md:grid-cols-2">
             <div><dt className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">Date & time</dt><dd className="mt-0.5 font-medium text-zinc-700">{e.startAt.toString().slice(0, 21)} → {e.endAt.toString().slice(0, 21)}</dd></div>
             <div><dt className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">Venue</dt><dd className="mt-0.5 font-medium text-zinc-700">{e.venue}</dd></div>

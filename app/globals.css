@@ -103,6 +103,7 @@ body {
 
 .input {
   @apply w-full rounded-xl border border-zinc-300 bg-white px-3.5 py-2.5 outline-none;
+  min-width: 0;
   transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
 }
 .input:focus {

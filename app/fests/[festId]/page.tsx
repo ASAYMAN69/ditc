@@ -21,9 +21,9 @@ export default async function FestPage({ params }: { params: { festId: string } 
   return (
     <div className="flex flex-col gap-6">
       <a href="/" className="text-sm font-medium text-zinc-500 hover:text-zinc-900">← All fests</a>
-      <div className="card p-8">
+      <div className="card p-6 md:p-8">
         <p className="badge bg-zinc-100 text-zinc-700">{fest.events.length} events</p>
-        <h1 className="font-display mt-2 text-4xl font-bold tracking-tight">{fest.title}</h1>
+        <h1 className="font-display mt-2 text-3xl font-bold tracking-tight md:text-4xl">{fest.title}</h1>
         <p className="mt-2 max-w-[65ch] text-zinc-600">{fest.description}</p>
         <p className="mt-3 text-sm font-medium text-zinc-700">{fest.venue} · {fest.startDate.toDateString()} → {fest.endDate.toDateString()}</p>
       </div>

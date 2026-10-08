@@ -48,8 +48,7 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
     <div className="flex flex-col gap-8">
       <section className="grid gap-6 md:grid-cols-[2fr_1fr] md:items-end">
         <div className="reveal">
-          <p className="badge bg-emerald-950 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-50">Smart Club Operations</p>
-          <h1 className="font-display mt-3 text-4xl font-extrabold leading-[1.02] tracking-tight md:text-6xl">
+          <h1 className="font-display mt-1 text-4xl font-extrabold leading-[1.02] tracking-tight md:text-6xl">
             Fests & events, <span className="text-accent-600">one home.</span>
           </h1>
           <p className="mt-3 max-w-[60ch] leading-relaxed text-zinc-600">
@@ -113,6 +112,7 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
                 deadline={e.registrationDeadline}
                 status={e.status}
                 image={e.image}
+                eager={ei === 0}
               />
             ))}
           </div>

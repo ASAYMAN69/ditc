@@ -1,6 +1,6 @@
-# DRMC Tech Club — Smart Club Operations Platform
+# DRMC Tech Club — Fest & Event Platform
 
-Club fest directory + event registration + organizer dashboard. Built for the 9th DRMC International Tech Carnival 2026 — AI Web Development Contest (Theme: Smart Club Operations).
+Club fest directory + event registration + organizer dashboard. Built for the 9th DRMC International Tech Carnival 2026 — AI Web Development Contest.
 
 ## Project description
 

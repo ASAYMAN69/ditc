@@ -20,7 +20,7 @@ export default async function Dashboard() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-display text-3xl font-bold tracking-tight">Organizer dashboard</h1>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <a href="/dashboard/new" className="btn-primary text-sm">+ New fest / event</a>
           <a href="/dashboard/users" className="btn-ghost text-sm">Users</a>
           <LogoutButton />
