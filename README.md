@@ -51,7 +51,8 @@ None required. Database: SQLite file locally (or Postgres via `DATABASE_URL`). N
 
 ## AI tools/features used
 
-Built with AI coding assistance (agent-built Next.js + Prisma scaffold, AI-drafted copy). Organizer "New event" descriptions can be drafted with any LLM and pasted in.
+- In-product AI (user-facing): event Q&A assistant + organizer description helper, powered by Google Gemini (primary) with OpenRouter fallback. Set `GEMINI_API_KEY` (and optionally `OPENROUTER_API_KEY`) in `.env` to enable; without keys both features show an honest "AI is off" state. Only public catalog data is ever sent to the provider — no participant names, emails, or phones.
+- Built with AI coding assistance (agent-built Next.js + Prisma scaffold, AI-drafted copy). Organizer "New event" descriptions can be drafted with any LLM and pasted in.
 
 ## Screenshots
 

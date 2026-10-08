@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import { seatInfo } from "@/lib/events";
+import { EventAssistant } from "@/components/event-assistant";
 import { EventCard } from "@/components/event-card";
 import { FestCard } from "@/components/fest-card";
 import { SearchFilter } from "@/components/search-filter";
@@ -114,6 +115,7 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
           </div>
         )}
       </section>
+      <EventAssistant />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { AiDescriptionButton } from "@/components/ai-description-button";
 
 export function AdminCreateForms({ fests }: { fests: Array<{ id: string; title: string }> }) {
   const router = useRouter();
@@ -76,7 +77,7 @@ export function AdminCreateForms({ fests }: { fests: Array<{ id: string; title: 
           <label className="label">Capacity<input name="capacity" type="number" min={1} defaultValue={50} className="input mt-1" required /></label>
           <label className="label">Fee (BDT)<input name="fee" type="number" min={0} defaultValue={0} className="input mt-1" /></label>
         </div>
-        <label className="label">Description<textarea name="description" className="input mt-1" rows={3} /></label>
+        <label className="label">Description<AiDescriptionButton /><textarea name="description" className="input mt-1" rows={3} /></label>
         <button className="btn-primary" type="submit" disabled={busy}>{busy ? "Creating…" : "Create event"}</button>
       </form>
       {msg !== "" && <p className="md:col-span-2 rounded-xl bg-zinc-100 px-4 py-2 text-sm font-medium">{msg}</p>}
