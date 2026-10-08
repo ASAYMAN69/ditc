@@ -1,0 +1,106 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// NOTE: SQLite connector in Prisma 5 supports neither enums nor Json.
+// Statuses are plain strings: fest draft|published|archived,
+// event draft|published|cancelled, user participant|organizer,
+// registration pending|confirmed|cancelled|rejected|checkedIn.
+// customFields / extraData / tags are JSON-encoded strings.
+
+model Organization {
+  id          String @id @default(cuid())
+  name        String
+  slug        String @unique
+  description String @default("")
+  createdAt   DateTime @default(now())
+  fests       Fest[]
+}
+
+model Fest {
+  id          String @id @default(cuid())
+  orgId       String
+  org         Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  title       String
+  slug        String @unique
+  description String @default("")
+  venue       String @default("")
+  banner      String @default("")
+  startDate   DateTime
+  endDate     DateTime
+  status      String @default("published")
+  tags        String @default("[]")
+  createdAt   DateTime @default(now())
+  events      Event[]
+
+  @@index([status])
+}
+
+model Event {
+  id                   String @id @default(cuid())
+  festId               String
+  fest                 Fest @relation(fields: [festId], references: [id], onDelete: Cascade)
+  title                String
+  slug                 String @unique
+  description          String @default("")
+  category             String @default("workshop")
+  venue                String @default("")
+  startAt              DateTime
+  endAt                DateTime
+  registrationDeadline DateTime
+  capacity             Int @default(50)
+  fee                  Int @default(0)
+  image                String @default("")
+  status               String @default("published")
+  customFields         String @default("[]")
+  createdAt            DateTime @default(now())
+  registrations        Registration[]
+
+  @@index([festId, status])
+}
+
+model User {
+  id           String @id @default(cuid())
+  name         String
+  email        String @unique
+  passwordHash String @default("")
+  phone      String @default("")
+  role         String @default("participant")
+  createdAt    DateTime @default(now())
+  registrations Registration[]
+  sessions     Session[]
+}
+
+model Session {
+  token     String @id
+  userId    String
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      String @default("participant")
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Registration {
+  id        String @id @default(cuid())
+  code      String @unique
+  eventId   String
+  event     Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  fullName  String
+  email     String
+  phone     String @default("")
+  extraData String @default("{}")
+  status    String @default("confirmed")
+  createdAt DateTime @default(now())
+
+  @@unique([eventId, email])
+  @@index([eventId, status])
+}

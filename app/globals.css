@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-zinc-50 text-zinc-900 antialiased;
+  font-family: system-ui, -apple-system, "Outfit", sans-serif;
+}
+
+.font-display {
+  font-family: "Outfit", "Geist", system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.card {
+  @apply rounded-2xl border border-zinc-200/70 bg-white shadow-[0_20px_40px_-24px_rgba(0,0,0,0.18)];
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-xl bg-accent-600 px-5 py-2.5 font-semibold text-white transition active:scale-[0.98] hover:bg-accent-700 disabled:opacity-50;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center rounded-xl border border-zinc-300 px-4 py-2 font-medium transition active:scale-[0.98] hover:bg-zinc-100;
+}
+
+.input {
+  @apply w-full rounded-xl border border-zinc-300 bg-white px-3.5 py-2.5 outline-none focus:border-accent-600 focus:ring-2 focus:ring-accent-100;
+}
+
+.label {
+  @apply mb-1.5 block text-sm font-semibold text-zinc-700;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+}
