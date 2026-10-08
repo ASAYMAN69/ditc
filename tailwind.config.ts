@@ -15,7 +15,7 @@ const config: Config = {
         ink: "#18181b",
       },
       fontFamily: {
-        display: ["system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+        display: ["Outfit", "system-ui", "sans-serif"],
         body: ["system-ui", "-apple-system", "sans-serif"],
         mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },
