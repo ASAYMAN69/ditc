@@ -29,27 +29,17 @@ async function postJson(url: string, headers: Record<string, string>, body: unkn
   }
 }
 
-function pickText(parts: unknown): string {
-  if (!Array.isArray(parts)) return "";
-  const texts: string[] = [];
-  for (const p of parts) {
-    if (typeof p === "object" && p !== null && "text" in p && typeof (p as { text: unknown }).text === "string") {
-      texts.push((p as { text: string }).text);
-    }
-  }
-  return texts.join("").trim();
-}
-
 async function viaGemini(prompt: string): Promise<string> {
   const key = process.env.GEMINI_API_KEY ?? "";
   if (key === "") throw new AiUnavailable("GEMINI_API_KEY is not set.");
-  const model = process.env.GEMINI_MODEL ?? "gemini-2.0-flash";
+  const model = process.env.GEMINI_MODEL ?? "gemini-2.5-flash";
   const data = (await postJson(
-    `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
-    { "x-goog-api-key": key },
-    { contents: [{ parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: MAX_TOKENS, temperature: 0.4 } },
-  )) as { candidates?: Array<{ content?: { parts?: unknown } }> };
-  const text = pickText(data.candidates?.[0]?.content?.parts);
+    "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+    { Authorization: `Bearer ${key}` },
+    { model, messages: [{ role: "user", content: prompt }], max_tokens: MAX_TOKENS, temperature: 0.4 },
+  )) as { choices?: Array<{ message?: { content?: unknown } }> };
+  const raw = data.choices?.[0]?.message?.content;
+  const text = typeof raw === "string" ? raw.trim() : "";
   if (text === "") throw new Error("Empty Gemini response.");
   return text;
 }
