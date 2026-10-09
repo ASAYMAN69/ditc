@@ -119,3 +119,29 @@ export function ChatIcon({ className }: P) {
     </svg>
   );
 }
+
+export function SearchIcon({ className }: P) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className={base(className)} aria-hidden="true">
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.8-3.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function XIcon({ className }: P) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className={base(className)} aria-hidden="true">
+      <path d="M6 6l12 12M18 6 6 18" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function LayersIcon({ className }: P) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className={base(className)} aria-hidden="true">
+      <path d="m12 3 9 5-9 5-9-5 9-5Z" strokeLinejoin="round" />
+      <path d="m4.5 12.5 7.5 4.2 7.5-4.2M4.5 16.5 12 20.7l7.5-4.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}

@@ -44,6 +44,11 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
       return true;
     });
 
+  const catCounts: Record<string, number> = {};
+  for (const e of events) catCounts[e.category] = (catCounts[e.category] ?? 0) + 1;
+  const visibleFests =
+    q === "" ? fests : fests.filter((f) => `${f.title} ${f.venue}`.toLowerCase().includes(q));
+
   return (
     <div className="flex flex-col gap-8">
       <section className="grid gap-6 md:grid-cols-[2fr_1fr] md:items-end">
@@ -61,15 +66,17 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
         </div>
       </section>
 
-      <SearchFilter />
+      <div className="sticky top-0 z-30 -mx-4 bg-zinc-50/90 px-4 py-3 backdrop-blur-md">
+        <SearchFilter counts={catCounts} shown={cards.length} total={events.length} />
+      </div>
 
       <section>
         <h2 className="font-display mb-3 text-xl font-bold">Available fests</h2>
-        {fests.length === 0 ? (
+        {visibleFests.length === 0 ? (
           <Empty text="No fests published yet." />
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {fests.map((f, fi) => {
+            {visibleFests.map((f, fi) => {
               const openNow = f.events.filter((e) => seatInfo(e.registrations.length, e.capacity, e.registrationDeadline, e.status).isOpen).length;
               return (
                 <FestCard
