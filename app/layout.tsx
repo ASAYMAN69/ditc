@@ -17,7 +17,7 @@ export default async function RootLayout({ children }: { readonly children: Reac
         <link rel="dns-prefetch" href="https://fastly.picsum.photos" />
       </head>
       <body>
-        <header className="relative border-b border-zinc-200 bg-white/80 backdrop-blur">
+        <header className="relative z-50 border-b border-zinc-200 bg-white/80 backdrop-blur">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3">
             <a href="/" className="font-display shrink-0 text-lg font-bold">
               DRMC <span className="text-accent-600">Tech Club</span>
