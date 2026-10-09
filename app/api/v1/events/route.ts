@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { seatInfo } from "@/lib/events";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: Request): Promise<NextResponse> {
   const url = new URL(req.url);
   const q = (url.searchParams.get("q") ?? "").toLowerCase();

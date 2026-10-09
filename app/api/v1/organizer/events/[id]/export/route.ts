@@ -1,6 +1,8 @@
 import { db } from "@/lib/db";
 import { requireOrganizerApi } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(
   _req: Request,
   { params }: { params: { id: string } },

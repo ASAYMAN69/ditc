@@ -6,6 +6,8 @@ import { getRequestUser } from "@/lib/auth";
 
 const ACTIVE = ["pending", "confirmed", "checkedIn"] as const;
 
+export const dynamic = "force-dynamic";
+
 export async function POST(
   req: Request,
   { params }: { params: { id: string } },

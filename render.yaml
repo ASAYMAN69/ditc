@@ -5,8 +5,7 @@ services:
     plan: free
     buildCommand: >-
       npm install &&
-      sed -i 's/provider = "sqlite"/provider = "postgresql"/' prisma/schema.prisma &&
-      npx prisma generate &&
+      node scripts/prebuild.mjs &&
       npx prisma db push &&
       npm run build
     startCommand: npx next start -p $PORT

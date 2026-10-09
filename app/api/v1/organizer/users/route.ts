@@ -4,6 +4,8 @@ import { hashPassword } from "@/lib/password";
 import { getRequestUser, requireOrganizerApi } from "@/lib/auth";
 import { organizerCreateUserSchema } from "@/lib/validations";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(): Promise<NextResponse> {
   const denied = await requireOrganizerApi();
   if (denied) return denied;

@@ -8,6 +8,8 @@ import { userSignupSchema } from "@/lib/validations";
 // Public signup. Role is ALWAYS participant here: the request body has no
 // role field, so privilege escalation through this endpoint is impossible.
 // Organizers are created via seed or POST /api/v1/organizer/users.
+export const dynamic = "force-dynamic";
+
 export async function POST(req: Request): Promise<NextResponse> {
   const body = await req.json().catch(() => null);
   const parsed = userSignupSchema.safeParse(body);

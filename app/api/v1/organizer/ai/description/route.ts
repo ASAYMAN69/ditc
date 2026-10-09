@@ -10,6 +10,8 @@ const input = z.object({
   bullets: z.string().max(1000).default(""),
 });
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: Request): Promise<NextResponse> {
   const denied = await requireOrganizerApi();
   if (denied) return denied;

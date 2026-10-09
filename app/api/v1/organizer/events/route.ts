@@ -4,6 +4,8 @@ import { slugify } from "@/lib/events";
 import { eventSchema } from "@/lib/validations";
 import { requireOrganizerApi } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: Request): Promise<NextResponse> {
   const denied = await requireOrganizerApi();
   if (denied) return denied;

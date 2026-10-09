@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { getRequestUser } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: Request): Promise<NextResponse> {
   const user = await getRequestUser();
   const requested = (new URL(req.url).searchParams.get("email") ?? "").trim().toLowerCase();

@@ -5,7 +5,7 @@ import { AiUnavailable, complete } from "@/lib/ai";
 
 const input = z.object({ question: z.string().min(2).max(500) });
 
-const LIMIT = Number(process.env.AI_ASK_PER_HOUR ?? "10") || 10;
+const LIMIT = Number(process.env.AI_ASK_PER_HOUR ?? "30") || 30;
 const WINDOW_MS = 60 * 60 * 1000;
 const hits = new Map<string, { count: number; reset: number }>();
 
@@ -17,6 +17,8 @@ function clientIp(req: Request): string {
   if (fwd) return fwd.split(",")[0]?.trim() ?? "local";
   return "local";
 }
+
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request): Promise<NextResponse> {
   const ip = clientIp(req);

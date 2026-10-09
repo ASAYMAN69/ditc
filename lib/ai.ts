@@ -9,7 +9,7 @@ export class AiUnavailable extends Error {
   }
 }
 
-const TIMEOUT_MS = Number(process.env.AI_TIMEOUT_MS ?? "15000") || 15000;
+const TIMEOUT_MS = Number(process.env.AI_TIMEOUT_MS ?? "45000") || 45000;
 const MAX_TOKENS = Number(process.env.AI_MAX_TOKENS ?? "400") || 400;
 
 async function postJson(url: string, headers: Record<string, string>, body: unknown): Promise<unknown> {

@@ -5,6 +5,8 @@ import { verifyPassword } from "@/lib/password";
 import { createSession } from "@/lib/session";
 import { SESSION_COOKIE, SESSION_MAX_AGE_SECONDS } from "@/lib/session-cookie";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: Request): Promise<NextResponse> {
   const body = await req.json().catch(() => ({}));
   const parsed = z.object({ email: z.string().email(), password: z.string().min(1) }).safeParse(body);

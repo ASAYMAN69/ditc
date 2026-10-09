@@ -8,6 +8,8 @@ async function guard(): Promise<NextResponse | null> {
   return requireOrganizerApi();
 }
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: Request): Promise<NextResponse> {
   const denied = await guard();
   if (denied) return denied;
