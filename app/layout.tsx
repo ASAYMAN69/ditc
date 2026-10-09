@@ -12,8 +12,8 @@ export default async function RootLayout({ children }: { readonly children: Reac
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://picsum.photos" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://picsum.photos" />
+        <link rel="preconnect" href="https://fastly.picsum.photos" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fastly.picsum.photos" />
       </head>
       <body>
         <header className="border-b border-zinc-200 bg-white/80 backdrop-blur">

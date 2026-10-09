@@ -83,6 +83,7 @@ export default async function Home({ searchParams }: { searchParams: SP }) {
                   eventsCount={f.events.length}
                   openNow={openNow}
                   banner={f.banner}
+                  eager={fi === 0}
                 />
               );
             })}

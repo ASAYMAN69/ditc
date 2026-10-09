@@ -37,10 +37,10 @@ async function main() {
   ];
   const fests = [];
   for (const f of festDefs) {
-    fests.push(await prisma.fest.create({ data: { orgId: org.id, title: f.title, slug: f.slug, description: f.desc, venue: f.venue, startDate: f.start, endDate: f.end, status: "published", banner: `https://picsum.photos/seed/${f.slug}/800/400` } }));
+    fests.push(await prisma.fest.create({ data: { orgId: org.id, title: f.title, slug: f.slug, description: f.desc, venue: f.venue, startDate: f.start, endDate: f.end, status: "published", banner: `https://picsum.photos/seed/${f.slug}/640/200` } }));
   }
 
-  const ev = (fest, i, o) => ({ festId: fest.id, ...o, slug: `${fest.slug}-e${i}`, image: `https://picsum.photos/seed/${fest.slug}-e${i}/640/360` });
+  const ev = (fest, i, o) => ({ festId: fest.id, ...o, slug: `${fest.slug}-e${i}`, image: `https://picsum.photos/seed/${fest.slug}-e${i}/560/320` });
   const eventDefs = [
     ev(fests[0], 1, { title: "AI Web Development Contest", category: "contest", venue: "Lab 1", startAt: d(30), endAt: d(30, 17), registrationDeadline: d(28, 23), capacity: 60, fee: 0, description: "Build a club operations platform: fest directory, registration, organizer tools. Judged live." }),
     ev(fests[0], 2, { title: "Programming Contest", category: "contest", venue: "Lab 2", startAt: d(31), endAt: d(31, 15), registrationDeadline: d(29, 23), capacity: 80, fee: 100, description: "Classic ICPC-style sprint: 8 problems, 4 hours, one winning team." }),
